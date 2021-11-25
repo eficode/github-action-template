@@ -1,0 +1,23 @@
+name: Run Current Action
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run action example
+        id: example_id
+        uses: ./
+        with:
+          input_example: 'example string'
+        continue-on-error: true
+      - name: Verify action output
+        run: |
+          echo "output: ${{ steps.example_id.outputs.output_example }}"
+          if [[ "${{ steps.example_id.outputs.output_example }}" != "gnirts elpmaxe" ]]; then
+            exit 1
+          fi

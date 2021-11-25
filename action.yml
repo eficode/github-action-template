@@ -1,0 +1,12 @@
+name: Github Action Template
+author: Eficode
+description: Template for creating new Github Actions
+inputs:
+  input_example:
+    description: Example input value.
+outputs:
+  output_example:
+    description: Example output value.
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

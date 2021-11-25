@@ -1,0 +1,52 @@
+{
+  "name": "github-action-template",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "prettier": "^2.5.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.9",
+    "@vercel/ncc": "^0.31.1",
+    "jest": "^27.3.1",
+    "standard-version": "^9.3.2",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.4.0",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.5.2"
+  },
+  "scripts": {
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "build": "tsc && ./node_modules/.bin/ncc build lib/index.js --license licenses.txt",
+    "release": "./node_modules/.bin/standard-version && git push --follow-tags",
+    "test": "jest",
+    "format": "prettier --write index.ts **/*.ts",
+    "lint": "tslint -p tsconfig.json"
+  },
+  "jest": {
+    "preset": "ts-jest/presets/default",
+    "testMatch": [
+      "**/**/*.test.ts"
+    ],
+    "setupFiles": [
+      "./test/setup.ts"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eficode/github-action-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eficode/github-action-template/issues"
+  },
+  "homepage": "https://github.com/eficode/github-action-template#readme"
+}
